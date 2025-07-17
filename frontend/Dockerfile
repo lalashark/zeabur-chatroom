@@ -1,8 +1,15 @@
-FROM node:20 AS builder
+# frontend/Dockerfile
+FROM node:18-alpine
 WORKDIR /app
-COPY . .
+
+COPY package*.json ./
 RUN npm install
+
+COPY . .
 RUN npm run build
 
-FROM nginx:alpine
-COPY --from=builder /app/dist /usr/share/nginx/html
+# serve dist
+RUN npm install -g serve
+CMD ["serve", "-s", "dist", "-l", "3000"]
+
+EXPOSE 3000
