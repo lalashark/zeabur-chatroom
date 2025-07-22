@@ -10,6 +10,6 @@ RUN npm run build
 
 # serve dist
 RUN npm install -g serve
-CMD ["serve", "-s", "dist", "-l", "3000"]
+CMD ["serve", "-s", "dist", "-l", "8080"]
 
 EXPOSE 3000
